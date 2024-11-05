@@ -1,4 +1,4 @@
-package com.github.barbodh.catalyst;
+package ca.yorku.eecs.singletons.catalyst;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

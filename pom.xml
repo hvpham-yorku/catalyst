@@ -8,7 +8,7 @@
 		<version>3.3.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.github.barbodh</groupId>
+	<groupId>ca.yorku.eecs.singletons</groupId>
 	<artifactId>catalyst</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>catalyst</name>
