@@ -6,3 +6,4 @@
 
 **Discord Chat/Server Invite :** [https://discord.gg/RcgwhQbSd2]
 
+**Trello Link :** [https://trello.com/b/UeGoZlix]
