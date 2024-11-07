@@ -17,8 +17,8 @@ They can use these records when obtaining prescriptions or receiving services, s
 ## Key Scenarios
 
 - **Scenario #1:** An optometrist conducts a full visual assessment on a patient. The optometrist can register the patient (if necessary) and create, read, update, and delete medical records associated with the patient.
-
 - **Scenario #2:** A patient logs into the system to view their medical history. Patients are authorized only to view records, not to create or modify any resources.
+- **Scenario #3:** An optometrist needs to collaborate with other professionals. The optometrist can change the visibility settings of a patient's record to make it accessible to specific optometrists or all optometrists, while a notification is sent to the patient for approval to maintain privacy.
 
 ## Key Principles
 
