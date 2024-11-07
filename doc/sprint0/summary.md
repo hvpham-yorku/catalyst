@@ -7,10 +7,10 @@ The system enables optometrists to record patient assessments and securely share
 
 ## Key Personas
 
-- **Optometrist:** A licensed optometrist registered in the Toronto Professional Services List (PSL), responsible for conducting and recording visual assessments.
+- **Optometrist:** Jason Ha, A licensed optometrist registered in the Toronto Professional Services List (PSL), responsible for conducting and recording visual assessments.
 Optometrists use the system to document patient assessment results and securely share these records with other healthcare professionals as needed.
 
-- **Patient:** An individual receiving visual assessments from registered optometrists in Toronto.
+- **Patient:** Damian Brathwaite, an individual receiving visual assessments from registered optometrists in Toronto.
 Patients have access to their medical records, linked to assessments conducted by their optometrists.
 They can use these records when obtaining prescriptions or receiving services, such as purchasing glasses.
 
