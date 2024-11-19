@@ -3,7 +3,7 @@
 ## Team Organization (Roles)
 
 - **Kevin**: Responsible for creating UI/UX, tracking project progress, setting up the frontend foundation (View), and creating the Team.md document.
-- **Ali**: Focuses on research tasks, including creating user personas and analyzing competitors. Responsible for compiling competition analysis in the Competition.md document.
+- **Amir Ali**: Focuses on research tasks, including creating user personas and analyzing competitors. Responsible for compiling competition analysis in the Competition.md document.
 - **Barbod (Project Leader)**: Leads the project and oversees features. Responsible for summarizing project objectives, setting up the backend structure (Model and Controller), managing the product backlog, and maintaining the README.md file.
 
 ## Decision Making
