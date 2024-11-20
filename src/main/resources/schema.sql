@@ -3,10 +3,10 @@ CREATE TABLE patients
     id           BIGINT AUTO_INCREMENT PRIMARY KEY,
     first_name   VARCHAR(255) NOT NULL,
     last_name    VARCHAR(255) NOT NULL,
-    dob          VARCHAR(255),
+    birth_date   DATE,
     gender       VARCHAR(255),
-    contact_info VARCHAR(255),
-    address      VARCHAR(255),
+    phone_number VARCHAR(12),
+    email        VARCHAR(255),
     created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -17,7 +17,8 @@ CREATE TABLE optometrists
     first_name     VARCHAR(255) NOT NULL,
     last_name      VARCHAR(255) NOT NULL,
     specialization VARCHAR(255),
-    contact_info   VARCHAR(255),
+    phone_number   VARCHAR(12),
+    email          VARCHAR(255),
     created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

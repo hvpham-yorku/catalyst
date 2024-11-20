@@ -22,8 +22,11 @@ public class Optometrist {
     @Column(name = "specialization")
     private String specialization;
 
-    @Column(name = "contact_info")
-    private String contactInfo;
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

@@ -3,6 +3,7 @@ package ca.yorku.eecs.singletons.catalyst.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -19,17 +20,17 @@ public class Patient {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "dob")
-    private String dob; // Consider using LocalDate if it represents a date
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
 
     @Column(name = "gender")
     private String gender;
 
-    @Column(name = "contact_info")
-    private String contactInfo;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
