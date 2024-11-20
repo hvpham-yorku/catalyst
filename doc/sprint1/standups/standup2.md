@@ -1,4 +1,4 @@
-[2024-11-19] - Sprint #1 Standup #2
+[2024-11-20] - Sprint #1 Standup #2
 1. What did you work on since the last standup?
 2. What do you commit to next?
 3. When do you think you'll be done?
