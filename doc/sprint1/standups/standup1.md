@@ -16,3 +16,8 @@
 2. Continuing to keep up with implementation progress through documentation and pull requests from group mates
 3. Hopefully by midnight tomorrow (2024-11-20)
 4. No immediate blockers, just need to wait to receive pull requests and continue staying up to date with progress
+
+## Barbod Habibi
+1. I have been working on implementing API endpoints and repositories for managing patient, optometrist, and assessment resources.
+2. Aiming to have the endpoints prepared by (2024-11-20) so that Kevin utilize the API for the front-end.
+3. No road blocks, however, I need to make minor adjustments to the database tables to better suit our needs.
