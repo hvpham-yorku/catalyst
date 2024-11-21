@@ -50,10 +50,13 @@
     </div>
 </nav>
 
-<!-- Modal for VIEWING Doctors DETAILS-->
+<!-- Model for VIEWING Doctors DETAILS-->
 <div class="container mt-5">
-    <h2 class="mb-4">Optometrist Details</h2>
-    <form th:action="@{/optometrists/{id}(id=${optometrist.id})}" th:object="${optometrist}" method="post">
+    <div class="d-flex justify-content-between mt-4">
+            <h2 class="mb-4">Optometrist Details</h2>
+            <button type="button" class="btn-close" onclick="history.back()" aria-label="Close"></button>
+    </div>
+    <form th:action="@{/optometrists/{id}(id=${optometrist.id})}" th:object="${optometrist}" method="post" id="viewTemplate">
         <div class="row">
             <!-- First Name -->
             <div class="col-md-6 mb-3">
@@ -120,6 +123,29 @@
                 });
             }
         });
+
+        document.getElementById("viewTemplate").addEventListener('submit', function (event) {
+
+            // Prevent the form from submitting initially
+            event.preventDefault()
+
+            const firstName = document.getElementById('input-optometrists-firstName-field').value
+            const lastName = document.getElementById('input-optometrists-lastName-field').value
+            const specialization = document.getElementById('select-optometrist-specialization-field').value
+            const phoneNumber = document.getElementById('input-optometrists-phoneNumber-field').value
+            const email = document.getElementById('input-optometrists-email-field').value
+
+            if (!firstName || !lastName || !specialization) {
+                alert('Please fill out the fields');
+            }
+            else if (!(email || phoneNumber)) {
+                alert('Please fill out atleast one contact information');
+            } else {
+                event.target.submit()
+            }
+        })
+
+
     });
 </script>
 
