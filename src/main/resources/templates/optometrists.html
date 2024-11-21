@@ -54,7 +54,7 @@
 <div class="container mt-5">
 
     <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h2 class="mb-4" style="margin: 0;">List Optometrists</h2>
+        <h2 class="mb-4" style="margin: 0;">List Optometrists</h2> <!-- Create button -->
         <button class="btn btn-success create-btn" data-bs-toggle="modal" data-bs-target="#createTemplate">Create</button>
     </div>
 
@@ -79,19 +79,69 @@
             <td>647-213-1321</td>
             <td>kevin@yorku.ca</td>
             <td>231232</td>
-            <td><button class="btn btn-primary btn-sm">Expand</button></td>
+            <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#expandTemplate">Expand</button></td>
         </tr>
         </tbody>
     </table>
 </div>
 
+<!-- Modal for VIEWING Doctors DETAILS-->
+<div class="modal fade" id="expandTemplate" tabindex="-1" aria-labelledby="expandTemplate" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Doctor's Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div> <!------First Name----->
+                    <label for="input-optometrists-firstName-field" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="input-optometrists-firstName-field" placeholder="First Name">
+                </div>
+                <div><!------ Last Name----->
+                    <label for="input-optometrists-lastName-field" class="form-label mt-4">Last name</label>
+                    <input type="text" class="form-control" id="input-optometrists-lastName-field" placeholder="Last Name">
+                </div>
+                <div><!------ Select for Specialization ----->
+                    <label for="select-optometrist-specialization-field" class="form-label mt-4">Specialization</label>
+                    <select class="form-select" id="select-optometrist-specialization-field">
+                        <option value="Specialty contact lenses">Specialty contact lenses</option>
+                        <option value="Myopia control">Myopia control</option>
+                        <option value="Pediatric optometry">Pediatric optometry</option>
+                        <option value="Vision therapy optometry">Vision therapy optometry</option>
+                        <option value="Ocular surface disease">Ocular surface disease</option>
+                        <option value="Geriatric optometry">Geriatric optometry</option>
+                        <option value="Low vision optometry">Low vision optometry</option>
+                        <option value="Neuro-optometry">Neuro-optometry</option>
+                        <option value="Sports vision optometry">Sports vision optometry</option>
+                        <option value="Ocular aesthetics">Ocular aesthetics</option>
+                    </select>
+                </div>
+                <div> <!------ Phone Number ----->
+                    <label for="input-optometrists-phoneNumber-field" class="form-label mt-4">Phone Number</label>
+                    <input type="text" class="form-control" id="input-optometrists-phoneNumber-field" placeholder="xxx-xxx-xxxx">
+                </div>
+                <div><!------ Email----->
+                    <label for="input-optometrists-email-field" class="form-label mt-4">Email</label>
+                    <input type="text" class="form-control" id="input-optometrists-email-field" placeholder="N/A">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!------ update Button for doctor details ----->
+                <button type="button" class="btn btn-outline-success" id="button-optometrists-update">Update</button>
+                <!------ Delete Button for doctor details ----->
+                <button type="button" class="btn btn-outline-danger" id="button-optometrists-delete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- Modal -->
+<!-- Modal for Create Doctors -->
 <div class="modal fade" id="createTemplate" tabindex="-1" aria-labelledby="createTemplate" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Doctor's detail</h5>
+                <h5 class="modal-title">Create Doctor</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -101,7 +151,7 @@
                 </div>
                 <div><!------ Last Name----->
                     <label for="input-optometrists-lastName" class="form-label mt-4">Last name</label>
-                    <input type="text" class="form-control" id="input-optometrists-lastName" placeholder="First Name">
+                    <input type="text" class="form-control" id="input-optometrists-lastName" placeholder="Last Name">
                 </div>
                 <div><!------ Select for Specialization ----->
                     <label for="select-optometrist-specialization" class="form-label mt-4">Specialization</label>
@@ -128,7 +178,8 @@
                     <input type="text" class="form-control" id="input-optometrists-email" placeholder="N/A">
                 </div>
             </div>
-            <div class="modal-footer"> <!------ Create Button for doctor popup ----->
+            <div class="modal-footer">
+                <!------ Create Button for doctor popup ----->
                 <button type="button" class="btn btn-success" id="button-optometrists-create">Create</button>
             </div>
         </div>
@@ -138,9 +189,17 @@
 <script src="https://unpkg.com/imask"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const phoneInput = document.getElementById("phoneNumber");
-        IMask(phoneInput, {
-            mask: "000-000-0000" // Phone number format
+        // Array of IDs to apply the mask
+        const ids = ["input-optometrists-phoneNumber", "input-optometrists-phoneNumber-field"];
+
+        // Loop through each ID and apply the mask
+        ids.forEach(id => {
+            const inputElement = document.getElementById(id);
+            if (inputElement) { // Check if the element exists
+                IMask(inputElement, {
+                    mask: "000-000-0000" // Phone number format
+                });
+            }
         });
     });
 </script>
