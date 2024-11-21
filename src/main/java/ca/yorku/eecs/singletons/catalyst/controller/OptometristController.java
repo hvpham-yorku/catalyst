@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/optometrists")
@@ -32,6 +29,31 @@ public class OptometristController {
             return "optometrists";
         }
         optometristService.save(optometrist);
+        return "redirect:/optometrists";
+    }
+
+    @GetMapping("/details")
+    public String optometristDetails() {
+        return "optometrist-details";
+    }
+
+    @GetMapping("/{id}")
+    public String getOptometristDetails(@PathVariable Integer id, Model model) {
+        Optometrist optometrist = optometristService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid optometrist ID: " + id));
+        model.addAttribute("optometrist", optometrist);
+        return "optometrist-details"; // Thymeleaf template name
+    }
+
+    @PostMapping("/{id}")
+    public String updateOptometrist(@PathVariable Integer id, @ModelAttribute Optometrist optometrist) {
+        optometristService.save(optometrist);
+        return "redirect:/optometrists";
+    }
+
+    @GetMapping("/{id}/delete")
+    public String deleteOptometrist(@PathVariable Integer id) {
+        optometristService.deleteById(id);
         return "redirect:/optometrists";
     }
 }

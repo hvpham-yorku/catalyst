@@ -81,9 +81,8 @@
             <td th:text="${optometrist.email}">Email</td>
             <td th:text="${optometrist.id}">ID</td>
             <td>
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#expandTemplate"
-                        th:attr="data-id=${optometrist.id}">Expand
-                </button>
+                <!-- Link to dedicated details page -->
+                <a th:href="@{/optometrists/{id}(id=${optometrist.id})}" class="btn btn-primary btn-sm">Expand</a>
             </td>
         </tr>
         </tbody>
