@@ -14,14 +14,6 @@ public class NavigationController {
         return "index";
     }
 
-    /* Locates any element with href with '/patients' and returns a string "patients"
-       to spring for rendering (finding and opening) the patients.html
-    */
-    @GetMapping("/patients")
-    public String patients() {
-        return "patients";
-    }
-
     /* Locates any element with href with '/optometrists' and returns a string "optometrists"
        to spring for rendering (finding and opening) the optometrists.html
     */
