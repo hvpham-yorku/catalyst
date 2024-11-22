@@ -12,8 +12,14 @@
 3. Hopefully by end of today (2024-11-21)
 4. No blockers
 
+## Amir Ali Mohaghegh
 
+1.
+2. Cleaning and finishing up the remaining docs for sprint 1
+3. End of day (2024-11-21)
+4. No blockers
 
 ## Note
+
 - We believe that we can finish Story#1 and Story#2 before the sprint
 - Moving Story#3 to the next sprint
