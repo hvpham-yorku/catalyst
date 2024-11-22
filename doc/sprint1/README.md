@@ -54,7 +54,7 @@ If running this command doesn't work, try finding the `CatalystApplication.java`
 
 ## Contribution
 
-We use GitHub Issues to represent user stories on our Trello board and to track project progress.
+We use GitHub Issues to represent user stories on our [Trello](https://trello.com/b/UeGoZlix/catalyst) board and to track project progress.
 
 ### Branching
 
