@@ -1,6 +1,6 @@
 # Sprint#1 Retro Meeting
 
-_- ### Participants: 
+- ### Participants: 
   - Kevin Nguyen
   - Amir Ali Mohaghegh
   - Barbod Habibi
