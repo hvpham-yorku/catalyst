@@ -51,7 +51,7 @@
 
 <div class="container mt-5">
     <h2 class="mb-4">Patient's Detail</h2>
-    <form th:action="@{/patients/{id}(id=${patient.id})}" th:object="${patient}" method="post">
+    <form th:action="@{/patients/{id}(id=${patient.id})}" th:object="${patient}" method="post" id="viewTemplate">
         <div class="row">
             <!-- First Name -->
             <div class="col-md-6 mb-3">
@@ -121,6 +121,35 @@
                 });
             }
         });
+
+        /** Validate inputs before updating current patient **/
+        document.getElementById("viewTemplate").addEventListener('submit', function (event) {
+
+            // Prevent the form from submitting initially
+            event.preventDefault()
+
+            const firstName = document.getElementById('input-patients-firstName-field').value
+            const lastName = document.getElementById('input-patients-lastName-field').value
+            const gender = document.getElementById('select-gender-field').value
+            const phoneNumber = document.getElementById('input-patients-phoneNumber-field').value
+            const email = document.getElementById('input-patients-email-field').value
+            const dateOfBirth = document.getElementById('input-patients-DoB-field').value
+
+
+            if (!firstName || !lastName || !gender || !dateOfBirth) {
+                alert('Please fill out the fields');
+            }
+            else if (!(email || phoneNumber)) {
+                alert('Please fill out atleast one contact information');
+            }
+            else if (dateOfBirth.length !== 10) {
+                alert('Please provide a valid date of birth in the correct format (YYYY-MM-DD)');
+            }
+            else {
+                event.target.submit()
+            }
+        });
+
 
         /* THIS IS FOR DoB MASKING */
         const dateOfBirthID = ["input-patients-DoB", "input-patients-DoB-field"];

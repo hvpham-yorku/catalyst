@@ -147,19 +147,46 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
 
-        /*THIS IS FOR PHONE NUMBER MASKING*/
-        // Array of IDs to apply the mask
-        const phoneNumberID = ["input-patients-phoneNumber", "input-patients-phoneNumber-field"];
+
 
         // Loop through each ID and apply the mask
-        phoneNumberID.forEach(id => {
-            const inputElement = document.getElementById(id);
-            if (inputElement) { // Check if the element exists
-                IMask(inputElement, {
-                    mask: "000-000-0000" // Phone number format
-                });
+        const inputElement = document.getElementById("input-patients-phoneNumber");
+        if (inputElement) { // Check if the element exists
+            IMask(inputElement, {
+                mask: "000-000-0000" // Phone number format
+            });
+        }
+
+
+        /** Validate inputs before creating a new patient **/
+        document.getElementById("createTemplate").addEventListener('submit', function (event) {
+
+            // Prevent the form from submitting initially
+            event.preventDefault()
+
+            const firstName = document.getElementById('input-patients-firstName').value
+            const lastName = document.getElementById('input-patients-lastName').value
+            const gender = document.getElementById('select-gender').value
+            const phoneNumber = document.getElementById('input-patients-phoneNumber').value
+            const email = document.getElementById('input-patients-email').value
+            const dateOfBirth = document.getElementById('input-patients-DoB').value
+
+
+            if (!firstName || !lastName || !gender || !dateOfBirth) {
+                alert('Please fill out the fields');
             }
-        });
+            else if (!(email || phoneNumber)) {
+                alert('Please fill out atleast one contact information');
+            }
+            else if (dateOfBirth.length !== 10) {
+                alert('Please provide a valid date of birth in the correct format (YYYY/MM/DD)');
+            }
+            else {
+                event.target.submit()
+            }
+        })
+
+
 
         /* THIS IS FOR DoB MASKING */
         const dateOfBirthID = ["input-patients-DoB", "input-patients-DoB-field"];
@@ -197,6 +224,7 @@
             }
         });
     });
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
