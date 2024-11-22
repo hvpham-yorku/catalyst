@@ -53,7 +53,8 @@
 
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h2 class="mb-4" style="margin: 0;">List Patients</h2>
-        <button class="btn btn-success create-btn">Create</button>
+        <button class="btn btn-success create-btn" data-bs-toggle="modal" data-bs-target="#createTemplate">Create
+        </button>
     </div>
 
 
@@ -64,25 +65,170 @@
             <th>Last Name</th>
             <th>Gender</th>
             <th>Date of Birth</th>
-            <th>Contact Info</th>
+            <th>Phone Number</th>
+            <th>Email</th>
             <th>ID</th>
             <th>View More</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Kevin</td>
-            <td>Nguyen</td>
-            <td>Male</td>
-            <td>01/12/2003</td>
-            <td>kevin@yorku.ca</td>
-            <td>231232</td>
-            <td><button class="btn btn-primary btn-sm">Expand</button></td>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.firstName}">First Name</td>
+            <td th:text="${patient.lastName}">Last Name</td>
+            <td th:text="${patient.gender}">Gender</td>
+            <td th:text="${patient.birthDate}">Birth Date</td>
+            <td th:text="${patient.phoneNumber}">Phone Number</td>
+            <td th:text="${patient.email}">Email</td>
+            <td th:text="${patient.id}">ID</td>
+            <td>
+                <!-- Link to dedicated details page -->
+                <a th:href="@{/patients/{id}(id=${patient.id})}" class="btn btn-primary btn-sm">Expand</a>
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!-- Modal for Create Patients -->
+<div class="modal fade" id="createTemplate" tabindex="-1" aria-labelledby="createTemplate" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form action="/patients" method="post" th:object="${patient}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Patient</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div> <!------First Name----->
+                        <label for="input-patients-firstName" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="input-patients-firstName" placeholder="First Name"
+                               th:field="*{firstName}">
+                    </div>
+                    <div><!------ Last Name----->
+                        <label for="input-patients-lastName" class="form-label mt-4">Last name</label>
+                        <input type="text" class="form-control" id="input-patients-lastName" placeholder="Last Name"
+                               th:field="*{lastName}">
+                    </div>
+                    <div><!------ Select for gender ----->
+                        <label for="select-gender" class="form-label mt-4">Gender</label>
+                        <select class="form-select" id="select-gender" th:field="*{gender}">
+                            <option value="" selected disabled>Please select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div> <!------ Phone Number ----->
+                        <label for="input-patients-phoneNumber" class="form-label mt-4">Phone Number</label>
+                        <input type="text" class="form-control" id="input-patients-phoneNumber"
+                               placeholder="xxx-xxx-xxxx" th:field="*{phoneNumber}">
+                    </div>
+                    <div><!------ Email----->
+                        <label for="input-patients-email" class="form-label mt-4">Email</label>
+                        <input type="text" class="form-control" id="input-patients-email"
+                               placeholder="example@domain.com" th:field="*{email}">
+                    </div>
+                    <div> <!------ Date Of Birth ----->
+                        <label for="input-patients-DoB" class="form-label mt-4">Date Of Birth</label>
+                        <input type="text" class="form-control" id="input-patients-DoB" placeholder="YYYY/MM/DD"
+                               th:field="*{birthDate}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!------ Create Button for patient popup ----->
+                    <button type="submit" class="btn btn-success">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://unpkg.com/imask"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+
+
+        // Loop through each ID and apply the mask
+        const inputElement = document.getElementById("input-patients-phoneNumber");
+        if (inputElement) { // Check if the element exists
+            IMask(inputElement, {
+                mask: "000-000-0000" // Phone number format
+            });
+        }
+
+
+        /** Validate inputs before creating a new patient **/
+        document.getElementById("createTemplate").addEventListener('submit', function (event) {
+
+            // Prevent the form from submitting initially
+            event.preventDefault()
+
+            const firstName = document.getElementById('input-patients-firstName').value
+            const lastName = document.getElementById('input-patients-lastName').value
+            const gender = document.getElementById('select-gender').value
+            const phoneNumber = document.getElementById('input-patients-phoneNumber').value
+            const email = document.getElementById('input-patients-email').value
+            const dateOfBirth = document.getElementById('input-patients-DoB').value
+
+
+            if (!firstName || !lastName || !gender || !dateOfBirth) {
+                alert('Please fill out the fields');
+            }
+            else if (!(email || phoneNumber)) {
+                alert('Please fill out atleast one contact information');
+            }
+            else if (dateOfBirth.length !== 10) {
+                alert('Please provide a valid date of birth in the correct format (YYYY/MM/DD)');
+            }
+            else {
+                event.target.submit()
+            }
+        })
+
+
+
+        /* THIS IS FOR DoB MASKING */
+        const dateOfBirthID = ["input-patients-DoB", "input-patients-DoB-field"];
+
+        // Loop through each ID and apply the mask
+        dateOfBirthID.forEach(id => {
+            const inputElement = document.getElementById(id);
+            if (inputElement) { // Check if the element exists
+                IMask(inputElement, {
+                    mask: Date,
+                    pattern: 'YYYY/MM/DD',
+                    lazy: true,
+                    min: new Date(1970, 0, 1),
+                    max: new Date(2030, 0, 1),
+
+                    format: date => moment(date).format(momentFormat),
+                    blocks: {
+                        YYYY: {
+                            mask: IMask.MaskedRange,
+                            from: 1970,
+                            to: 2030
+                        },
+                        MM: {
+                            mask: IMask.MaskedRange,
+                            from: 1,
+                            to: 12
+                        },
+                        DD: {
+                            mask: IMask.MaskedRange,
+                            from: 1,
+                            to: 31
+                        },
+                    }
+                });
+            }
+        });
+    });
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 </html>

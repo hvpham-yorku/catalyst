@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Details Page</title>
+    <!-- Link to Zephyr Theme CSS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/zephyr/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        .navbar-nav .nav-link {
+            font-size: 1rem;
+            opacity: 0.5; /* Set all links to 50% opacity */
+        }
+
+        .navbar-nav .nav-link.active {
+            opacity: 1; /* Full opacity for the active link */
+        }
+
+        .navbar-brand {
+            font-size: 2rem;
+            padding-left: 20px;
+            padding-right: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary align-content-center">
+    <div class="container-fluid">
+        <h1 class="navbar-brand">Catalyst</h1> <!-- Company title -->
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <!-- Nav bar Items -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a> <!-- Active link -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/patients">Patients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/optometrists">Optometrists</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/assessments">Assessments</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Patient's Detail</h2>
+    <form th:action="@{/patients/{id}(id=${patient.id})}" th:object="${patient}" method="post" id="viewTemplate">
+        <div class="row">
+            <!-- First Name -->
+            <div class="col-md-6 mb-3">
+                <label for="input-patients-firstName-field" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="input-patients-firstName-field" th:field="*{firstName}" placeholder="First Name">
+            </div>
+            <!-- Last Name -->
+            <div class="col-md-6 mb-3">
+                <label for="input-patients-lastName-field" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="input-patients-lastName-field" th:field="*{lastName}" placeholder="Last Name">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Gender -->
+            <div class="col-md-12 mb-3">
+                <label for="select-gender-field" class="form-label">Gender</label>
+                <select class="form-select" id="select-gender-field" th:field="*{gender}">
+                    <option value="" disabled>Please select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Phone Number -->
+            <div class="col-md-6 mb-3">
+                <label for="input-patients-phoneNumber-field" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="input-patients-phoneNumber-field" th:field="*{phoneNumber}" placeholder="xxx-xxx-xxxx">
+            </div>
+            <!-- Email -->
+            <div class="col-md-6 mb-3">
+                <label for="input-patients-email-field" class="form-label">Email</label>
+                <input type="email" class="form-control" id="input-patients-email-field" th:field="*{email}" placeholder="example@domain.com">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Date of Birth -->
+            <div class="col-md-12 mb-3">
+                <label for="input-patients-DoB-field" class="form-label">Date of Birth</label>
+                <input type="text" class="form-control" id="input-patients-DoB-field" th:field="*{birthDate}" placeholder="YYYY/MM/DD">
+            </div>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+            <!-- Update Button -->
+            <button type="submit" class="btn btn-outline-success">Update</button>
+            <!-- Delete Button -->
+            <a th:href="@{/patients/{id}/delete(id=${patient.id})}" class="btn btn-outline-danger">Delete</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://unpkg.com/imask"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        /*THIS IS FOR PHONE NUMBER MASKING*/
+        // Array of IDs to apply the mask
+        const phoneNumberID = ["input-patients-phoneNumber", "input-patients-phoneNumber-field"];
+
+        // Loop through each ID and apply the mask
+        phoneNumberID.forEach(id => {
+            const inputElement = document.getElementById(id);
+            if (inputElement) { // Check if the element exists
+                IMask(inputElement, {
+                    mask: "000-000-0000" // Phone number format
+                });
+            }
+        });
+
+        /** Validate inputs before updating current patient **/
+        document.getElementById("viewTemplate").addEventListener('submit', function (event) {
+
+            // Prevent the form from submitting initially
+            event.preventDefault()
+
+            const firstName = document.getElementById('input-patients-firstName-field').value
+            const lastName = document.getElementById('input-patients-lastName-field').value
+            const gender = document.getElementById('select-gender-field').value
+            const phoneNumber = document.getElementById('input-patients-phoneNumber-field').value
+            const email = document.getElementById('input-patients-email-field').value
+            const dateOfBirth = document.getElementById('input-patients-DoB-field').value
+
+
+            if (!firstName || !lastName || !gender || !dateOfBirth) {
+                alert('Please fill out the fields');
+            }
+            else if (!(email || phoneNumber)) {
+                alert('Please fill out atleast one contact information');
+            }
+            else if (dateOfBirth.length !== 10) {
+                alert('Please provide a valid date of birth in the correct format (YYYY-MM-DD)');
+            }
+            else {
+                event.target.submit()
+            }
+        });
+
+
+        /* THIS IS FOR DoB MASKING */
+        const dateOfBirthID = ["input-patients-DoB", "input-patients-DoB-field"];
+
+        // Loop through each ID and apply the mask
+        dateOfBirthID.forEach(id => {
+            const inputElement = document.getElementById(id);
+            if (inputElement) { // Check if the element exists
+                IMask(inputElement, {
+                    mask: Date,
+                    pattern: 'YYYY/MM/DD',
+                    lazy: true,
+                    min: new Date(1970, 0, 1),
+                    max: new Date(2030, 0, 1),
+
+                    format: date => moment(date).format(momentFormat),
+                    blocks: {
+                        YYYY: {
+                            mask: IMask.MaskedRange,
+                            from: 1970,
+                            to: 2030
+                        },
+                        MM: {
+                            mask: IMask.MaskedRange,
+                            from: 1,
+                            to: 12
+                        },
+                        DD: {
+                            mask: IMask.MaskedRange,
+                            from: 1,
+                            to: 31
+                        },
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+</html>
