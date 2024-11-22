@@ -50,7 +50,10 @@
 </nav>
 
 <div class="container mt-5">
-    <h2 class="mb-4">Patient's Detail</h2>
+    <div class="d-flex justify-content-between mt-4">
+        <h2 class="mb-4">Patient's Details</h2>
+        <button type="button" class="btn-close" onclick="history.back()" aria-label="Close"></button>
+    </div>
     <form th:action="@{/patients/{id}(id=${patient.id})}" th:object="${patient}" method="post" id="viewTemplate">
         <div class="row">
             <!-- First Name -->
