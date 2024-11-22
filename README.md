@@ -29,7 +29,7 @@ cd catalyst
 ```
 
 2. You can use the Maven wrapper provided with the project, which means you don’t need a separate Maven installation.
-Run the following command to build the project and download any necessary dependencies:
+   Run the following command to build the project and download any necessary dependencies:
 
 ```shell
 ./mvnw clean install   # For Linux/macOS
@@ -42,13 +42,13 @@ mvnw clean install     # For Windows
 ./mvnw spring-boot:run   # For Linux/macOS
 mvnw spring-boot:run     # For Windows
 ```
-If running this command doesn't work, try finding the 'CatalystApplication' and running it
+If running this command doesn't work, try finding the `CatalystApplication.java` from `src/main/java` and running it
 
 - The application will run on the default port `http://localhost:8080`.
   - Simply open your browser and past the port into your search bar.
 - To access the H2 console, navigate to `http://localhost:8080/h2-console`.
 - Use the following default credentials configured in `application.properties`:
-  - URL: `jdbc:h2:mem:testdb`
+  - URL: `jdbc:h2:file:./data/testdb`
   - Username: `sa`
   - Password: (leave blank, unless specified in `application.properties`)
 
@@ -56,11 +56,16 @@ If running this command doesn't work, try finding the 'CatalystApplication' and 
 
 We use GitHub Issues to represent user stories on our Trello board and to track project progress.
 
-### Branch Naming Convention
+### Branching
 
-Our branch naming convention uses kebab case and follows this format: `story#<User story number>-<Component to work on (Frontend,Backend,etc...)-<Optional: Adding your initials>`
+Our branch naming convention uses kebab case and follows this format: `story-<story-number>`.
 
-Example: `story#1-frontend-KN` or `story#1-backend`
+For each story, the branch is further subdivided into front-end and back-end branches:
+
+- `story-<story-number>-frontend`
+- `story-<story-number>-backend`
+
+As developers complete their respective front-end or back-end tasks, they will merge their changes into the story branch. Once the entire feature is complete, the story branch will be merged into the `main` branch.
 
 ### Pull Request Process
 

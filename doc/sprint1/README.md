@@ -42,8 +42,10 @@ mvnw clean install     # For Windows
 ./mvnw spring-boot:run   # For Linux/macOS
 mvnw spring-boot:run     # For Windows
 ```
+If running this command doesn't work, try finding the `CatalystApplication.java` from `src/main/java` and running it
 
 - The application will run on the default port `http://localhost:8080`.
+    - Simply open your browser and past the port into your search bar.
 - To access the H2 console, navigate to `http://localhost:8080/h2-console`.
 - Use the following default credentials configured in `application.properties`:
     - URL: `jdbc:h2:file:./data/testdb`
