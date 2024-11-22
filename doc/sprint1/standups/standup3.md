@@ -19,6 +19,14 @@
 3. We aim to finish this by afternoon (2024-11-21) so that we can start focusing no the documentation.
 4. No blockers
 
+## Amir Ali Mohaghegh
+
+1. I have been working on improving the frontend homepage experience in accordance with user story 19# and filling out documentation
+2. I will be working with the rest of the team to finalize all documentation and plan our sprint 2
+3. We will finish all related components to sprint 1 by the end of the night (2024-11-21)
+4. No blockers
+
 ## Note
+
 - We believe that we can finish Story#1 and Story#2 before the sprint
 - Moving Story#3 to the next sprint
