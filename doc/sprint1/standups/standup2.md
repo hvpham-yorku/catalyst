@@ -18,3 +18,10 @@
 2. Finishing up the required docs for sprint 1
 3. End of day tonight (2024-11-20)
 4. No blockers
+
+## Barbod Habibi
+
+1. I finished integrating the optometrist CRUD functionalities into the front-end using Thymeleaf
+2. I will work on replicating the back-end layers and front-end integration for patient resources
+3. Since I have already implemented a similar feature, I expect to finish this feature earlier, by tomorrow noon (2024-11-21), in order to be ready for the demo
+4. No blockers

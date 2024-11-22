@@ -12,14 +12,13 @@
 3. Hopefully by end of today (2024-11-21)
 4. No blockers
 
-## Amir Ali Mohaghegh
+## Barbod Habibi
 
-1.
-2. Cleaning and finishing up the remaining docs for sprint 1
-3. End of day (2024-11-21)
+1. I have been wrapping up the CRUD functionalities for optometrist and patient resources.
+2. I will be working with Kevin to review pull requests, merge story #1 and #2 code into the main branch, and close the associated GitHub issues.
+3. We aim to finish this by afternoon (2024-11-21) so that we can start focusing no the documentation.
 4. No blockers
 
 ## Note
-
 - We believe that we can finish Story#1 and Story#2 before the sprint
 - Moving Story#3 to the next sprint
