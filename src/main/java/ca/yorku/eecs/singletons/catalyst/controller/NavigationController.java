@@ -14,11 +14,4 @@ public class NavigationController {
         return "index";
     }
 
-    /* Locates any element with href with '/assessments' and returns a string "assessments"
-       to spring for rendering (finding and opening) the assessments.html
-    */
-    @GetMapping("/assessments")
-    public String assessments() {
-        return "assessments";
-    }
 }
