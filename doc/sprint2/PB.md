@@ -2,13 +2,13 @@
 
 1. ~~As an administrator, I want to create, view, update, and delete optometrist records so that I can manage and maintain an accurate list of registered optometrists.~~
 2. ~~As an administrator, I want to create, view, update, and delete patient records so that I can manage and maintain an accurate list of patients in the system.~~
-3. As an administrator, I want to create, view, update, and delete visual assessment records so that I can document, manage, and update patient assessments accurately. (Moving to Sprint#2)
-4. As an app user, I want a login page where I can log in with the appropriate user role (administrator, optometrist, or patient) so that I can access features relevant to my role.
+3. As an administrator, I want to create, view, update, and delete visual assessment records so that I can document, manage, and update patient assessments accurately. **(TODO - Sprint#2)**
+4. As an app user, I want a login page where I can log in with the appropriate user role (administrator, optometrist, or patient) so that I can access features relevant to my role.  **(TODO - Sprint#2)**
 5. As an app user, I want to be able to reset my password if I forget it so that I can regain access to my account securely.
-6. As an administrator, I want to be able to create user records (patient, optometrist, administrator) so that I can manage access and onboarding for new users in the system.
-7. As an optometrist, I want to create, read, update, and delete only the assessment records associated with myself so that I can manage my patient assessments securely.
-8. As an optometrist, I want to be able to view my personal details and update them so that my account information remains accurate and up-to-date.
-9. As a patient, I want to read only my own assessment records so that I can review my medical information securely.
+6. As an administrator, I want to be able to create user records (patient, optometrist, administrator) so that I can manage access and onboarding for new users in the system.  **(TODO - Sprint#2)**
+7. As an optometrist, I want to create, read, update, and delete only the assessment records associated with myself so that I can manage my patient assessments securely.  **(TODO - Sprint#2)**
+8. As an optometrist, I want to be able to view my personal details and update them so that my account information remains accurate and up-to-date.  **(TODO - Sprint#2)**
+9. As a patient, I want to read only my own assessment records so that I can review my medical information securely. **(TODO - Sprint#2)**
 10. As a patient, I want to be able to view my personal details and update them so that my account information is accurate and up-to-date.
 11. As an optometrist, I want to change the visibility of a patient’s record to be viewable by a specific or all optometrists so that I can facilitate collaborative patient care when needed.
 12. As a patient, I want to receive an email notification if my optometrist attempts to change the visibility of my record so that I am informed when there is a request to share my medical information.
