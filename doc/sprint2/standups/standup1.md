@@ -18,3 +18,9 @@
 3. Mid-day tomorrow (2024-11-29)
 4. No blockers at the moment
 
+## Barbod Habibi
+
+1. I was designing the authentication table and learning Spring MVC security
+2. I will commit appropriate backend endpoints for story #3 and incorporate them into the user interface
+3. I will finish the server-side integration of story #3 by the end of tonight
+4. No blockers
