@@ -11,3 +11,10 @@
 3. I've finished it already, hopefully to pick up another ticket today
 4. No blockers
 
+## Amir Ali Mohaghegh
+
+1. I have worked on the front end for the login page and feature of our program
+2. Finishing the login page as well as updating documentation to keep up with our progress on the project
+3. Mid-day tomorrow (2024-11-29)
+4. No blockers at the moment
+
