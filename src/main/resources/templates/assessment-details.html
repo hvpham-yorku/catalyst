@@ -66,7 +66,7 @@
                     <!--will not get the list because it's not a proper template yet -->
                     <option th:each="patient : ${patients}"
                             th:value="${patient.id}"
-                            th:text="${patient.firstName + ' ' + patient.lastName}"></option>
+                            th:text="${patient.firstName + ' ' + patient.lastName + ', ID: ' + patient.id}"></option>
                 </select>
             </div>
             <!-- Doctor-->
@@ -77,7 +77,7 @@
                     <!--will not get the list because it's not a proper template yet -->
                     <option th:each="optometrist : ${optometrists}"
                             th:value="${optometrist.id}"
-                            th:text="${optometrist.firstName + ' ' + optometrist.lastName}"></option>
+                            th:text="${optometrist.firstName + ' ' + optometrist.lastName + ', ID: ' + optometrist.id}"></option>
                 </select>
             </div>
         </div>

@@ -98,7 +98,7 @@
                             <option value="" disabled selected>Please select a patient</option>
                             <option th:each="patient : ${patients}"
                                     th:value="${patient.id}"
-                                    th:text="${patient.firstName + ' ' + patient.lastName}"></option>
+                                    th:text="${patient.firstName + ' ' + patient.lastName + ', ID: ' + patient.id}"></option>
                         </select>
                     </div>
                     <div><!------ Select for Doctor ----->
@@ -107,7 +107,7 @@
                             <option value="" selected disabled>Please select a patient</option>
                             <option th:each="optometrist : ${optometrists}"
                                     th:value="${optometrist.id}"
-                                    th:text="${optometrist.firstName + ' ' + optometrist.lastName}"></option>
+                                    th:text="${optometrist.firstName + ' ' + optometrist.lastName + ', ID: ' + optometrist.id}"></option>
                         </select>
                     </div>
                     <div><!------ Visual Acuity ----->
