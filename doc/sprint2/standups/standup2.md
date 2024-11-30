@@ -13,7 +13,10 @@
 
 ## Amir Ali Mohaghegh
 
-
+1. Finished frontend for login page (story-4-frontend)
+2. Documenting team progress and helping working on future PR requests
+3. End of day (2024-11-29)
+4. No blockers besides waiting for PR requests
 
 ## Barbod Habibi
 
