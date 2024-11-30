@@ -20,4 +20,7 @@
 
 ## Barbod Habibi
 
-
+1. Finished backend for visual assessment CRUD operations and integrated with client-side
+2. I will start working on implementing the server-side endpoints for the authentication functionality
+3. I aim to finish the authentication backend by the end of tomorrow (2024-11-30)
+4. No blockers
