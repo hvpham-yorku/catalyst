@@ -54,28 +54,30 @@
         <h2 class="mb-4">Visual Assessment's Details</h2>
         <button type="button" class="btn-close" onclick="history.back()" aria-label="Close"></button>
     </div>
-    <form method="post" id="viewTemplate"> <!---TODO th:action and th:object setup ---->
+    <form th:action="@{/assessments/{id}(id=${assessment.id})}" th:object="${assessment}" method="post"
+          id="viewTemplate1">
+        <!--    <form method="post" id="viewTemplate">-->
         <div class="row">
             <!-- Patient -->
             <div class="col-md-6 mb-3">
                 <label for="select-assessments-patients-field" class="form-label">Patient</label>
-                <!---TODO th:field (th:field="*patient) <-- need a getter method to get name? or change it instead of id get the patient object" ---->
-                <select class="form-select" id="select-assessments-patients-field">
-                    <option value="" selected disabled>Please select a patient</option> <!--will not get the list because it's not a proper template yet -->
+                <select class="form-select" id="select-assessments-patients-field" th:field="*{patient}">
+                    <option value="" selected disabled>Please select a patient</option>
+                    <!--will not get the list because it's not a proper template yet -->
                     <option th:each="patient : ${patients}"
                             th:value="${patient.id}"
-                            th:text="${patient.firstName + ' ' + patient.lastName + ': ID ' + patient.id}"></option>
+                            th:text="${patient.firstName + ' ' + patient.lastName + ', ID: ' + patient.id}"></option>
                 </select>
             </div>
             <!-- Doctor-->
             <div class="col-md-6 mb-3">
-                <!---TODO th:field (th:field="*optometirst) <-- need a getter method to get name? or change it instead of id get the optometrist object" ---->
                 <label for="select-assessments-doctors-field" class="form-label">Doctor</label>
-                <select class="form-select" id="select-assessments-doctors-field">
-                    <option value="" selected disabled>Please select an Optometrist</option> <!--will not get the list because it's not a proper template yet -->
+                <select class="form-select" id="select-assessments-doctors-field" th:field="*{doctor}">
+                    <option value="" selected disabled>Please select an Optometrist</option>
+                    <!--will not get the list because it's not a proper template yet -->
                     <option th:each="optometrist : ${optometrists}"
                             th:value="${optometrist.id}"
-                            th:text="${optometrist.firstName + ' ' + optometrist.lastName + ': ID ' + optometrist.id}"></option>
+                            th:text="${optometrist.firstName + ' ' + optometrist.lastName + ', ID: ' + optometrist.id}"></option>
                 </select>
             </div>
         </div>
@@ -92,7 +94,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Left Eye</span>
                             </div>
-                            <input type="number" class="form-control" placeholder="Left Visual Acuity"> <!--TODO ADD th:field-->
+                            <input type="number" class="form-control" placeholder="Left Visual Acuity"
+                                   th:field="*{visualAcuityLeft}">
                         </div>
                     </div>
                     <div class="col">
@@ -100,7 +103,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Right Eye</span>
                             </div>
-                            <input type="number" class="form-control" placeholder="Right Visual Acuity"> <!--TODO ADD th:field-->
+                            <input type="number" class="form-control" placeholder="Right Visual Acuity"
+                                   th:field="*{visualAcuityRight}">
                         </div>
                     </div>
                 </div>
@@ -115,7 +119,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Left Eye</span>
                             </div>
-                            <input type="number" class="form-control" placeholder="Left Refraction"> <!--TODO ADD th:field-->
+                            <input type="number" class="form-control" placeholder="Left Refraction"
+                                   th:field="*{refractionLeft}">
                         </div>
                     </div>
                     <div class="col">
@@ -123,7 +128,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Right Eye</span>
                             </div>
-                            <input type="number" class="form-control" placeholder="Right Refraction"> <!--TODO ADD th:field-->
+                            <input type="number" class="form-control" placeholder="Right Refraction"
+                                   th:field="*{refractionRight}">
                         </div>
                     </div>
                 </div>
@@ -135,14 +141,16 @@
 
             <!-- Visual Acuity-->
             <div class="col-md-6 mb-3">
-                <label for="div-assessments-intraocularPressure-field" class="form-label">Intraocular Pressure (mmHg)</label>
+                <label for="div-assessments-intraocularPressure-field" class="form-label">Intraocular Pressure
+                    (mmHg)</label>
                 <div class="row" id="div-assessments-intraocularPressure-field">
                     <div class="col">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Left Eye</span>
                             </div>
-                            <input type="number" class="form-control" placeholder="Left Intraocular Pressure"> <!--TODO ADD th:field-->
+                            <input type="number" class="form-control" placeholder="Left Intraocular Pressure"
+                                   th:field="*{intraocularPressureLeft}">
                         </div>
                     </div>
                     <div class="col">
@@ -150,7 +158,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Right Eye</span>
                             </div>
-                            <input type="number" class="form-control" placeholder="Right Intraocular Pressure"> <!--TODO ADD th:field-->
+                            <input type="number" class="form-control" placeholder="Right Intraocular Pressure"
+                                   th:field="*{intraocularPressureRight}">
                         </div>
                     </div>
                 </div>
@@ -159,7 +168,7 @@
             <!-- Colour Vision-->
             <div class="col-md-6 mb-3">
                 <label for="select-colourVision-field" class="form-label">Colour Vision</label>
-                <select class="form-select" id="select-colourVision-field"> <!--TODO ADD th:field-->
+                <select class="form-select" id="select-colourVision-field" th:field="*{colorVision}">
                     <option value="" selected disabled>Please select</option>
                     <option value="normal">Normal</option>
                     <option value="protanopia">Protanopia (Red Deficiency)</option>
@@ -174,7 +183,8 @@
             <!-- Pupillary Response -->
             <div class="col-md-6 mb-3">
                 <label for="select-pupillaryResponse-field" class="form-label">Pupillary Response</label>
-                <select class="form-select" id="select-pupillaryResponse-field"> <!--TODO ADD th:field-->
+                <select class="form-select" id="select-pupillaryResponse-field"
+                        th:field="*{pupillaryResponse}">
                     <option value="" selected disabled>Please select</option>
                     <option value="normal">Normal</option>
                     <option value="sluggish">Sluggish</option>
@@ -185,7 +195,7 @@
             <!-- Visual Field -->
             <div class="col-md-6 mb-3">
                 <label for="select-visualField-field" class="form-label">Visual Field</label>
-                <select class="form-select" id="select-visualField-field"> <!--TODO ADD th:field-->
+                <select class="form-select" id="select-visualField-field" th:field="*{visualField}">
                     <option value="" selected disabled>Please select</option>
                     <option value="normal">Normal</option>
                     <option value="central-loss">Central Loss</option>
@@ -200,21 +210,22 @@
                 <!------ Assessment Note ----->
                 <div class="col-md-4 mb-3">
                     <label for="textarea-assessments-note-field" class="form-label">Additional Notes</label>
-                    <textarea class="form-control" id="textarea-assessments-note-field" rows="4"></textarea> <!--TODO ADD th:field-->
+                    <textarea class="form-control" id="textarea-assessments-note-field" rows="4"
+                              th:field="*{notes}"></textarea>
                 </div>
                 <!------ Assessment Date ----->
                 <div class="col-md-auto mb-3">
                     <label for="input-assessments-date-field" class="form-label">Assessment Date</label>
-                    <input type="text" class="form-control" id="input-assessments-date-field" placeholder="YYYY/MM/DD"> <!--TODO ADD th:field-->
+                    <input type="text" class="form-control" id="input-assessments-date-field" placeholder="YYYY/MM/DD"
+                           th:field="*{assessmentDate}">
                 </div>
             </div>
 
         </div>
+        <!-- PROBLEM HERE -->
         <div class="d-flex justify-content-between mt-4">
-            <!-- Update Button -->
             <button type="submit" class="btn btn-outline-success">Update</button>
-            <!-- Delete Button -->
-            <a th:href="@{/patients/{id}/delete(id=${patient.id})}" class="btn btn-outline-danger">Delete</a>
+            <a th:href="@{/assessments/{id}/delete(id=${assessment.id})}" class="btn btn-outline-danger">Delete</a>
         </div>
     </form>
 </div>
@@ -253,14 +264,11 @@
 
             if (!firstName || !lastName || !gender || !dateOfBirth) {
                 alert('Please fill out the fields');
-            }
-            else if (!(email || phoneNumber)) {
+            } else if (!(email || phoneNumber)) {
                 alert('Please fill out atleast one contact information');
-            }
-            else if (dateOfBirth.length !== 10) {
+            } else if (dateOfBirth.length !== 10) {
                 alert('Please provide a valid date of birth in the correct format (YYYY-MM-DD)');
-            }
-            else {
+            } else {
                 event.target.submit()
             }
         });
