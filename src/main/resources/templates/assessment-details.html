@@ -55,7 +55,7 @@
         <button type="button" class="btn-close" onclick="history.back()" aria-label="Close"></button>
     </div>
     <form th:action="@{/assessments/{id}(id=${assessment.id})}" th:object="${assessment}" method="post"
-          id="viewTemplate1">
+          id="viewTemplate">
         <!--    <form method="post" id="viewTemplate">-->
         <div class="row">
             <!-- Patient -->
@@ -234,51 +234,11 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
 
-        /*THIS IS FOR PHONE NUMBER MASKING*/
-        // Array of IDs to apply the mask
-        const phoneNumberID = ["input-patients-phoneNumber", "input-patients-phoneNumber-field"];
+        /* THIS IS FOR ASSESSMENT DATE MASKING */
+        const date = ["input-assessments-date", "input-assessments-date-field"];
 
         // Loop through each ID and apply the mask
-        phoneNumberID.forEach(id => {
-            const inputElement = document.getElementById(id);
-            if (inputElement) { // Check if the element exists
-                IMask(inputElement, {
-                    mask: "000-000-0000" // Phone number format
-                });
-            }
-        });
-
-        /** Validate inputs before updating current patient **/
-        document.getElementById("viewTemplate").addEventListener('submit', function (event) {
-
-            // Prevent the form from submitting initially
-            event.preventDefault()
-
-            const firstName = document.getElementById('input-patients-firstName-field').value
-            const lastName = document.getElementById('input-patients-lastName-field').value
-            const gender = document.getElementById('select-gender-field').value
-            const phoneNumber = document.getElementById('input-patients-phoneNumber-field').value
-            const email = document.getElementById('input-patients-email-field').value
-            const dateOfBirth = document.getElementById('input-patients-DoB-field').value
-
-
-            if (!firstName || !lastName || !gender || !dateOfBirth) {
-                alert('Please fill out the fields');
-            } else if (!(email || phoneNumber)) {
-                alert('Please fill out atleast one contact information');
-            } else if (dateOfBirth.length !== 10) {
-                alert('Please provide a valid date of birth in the correct format (YYYY-MM-DD)');
-            } else {
-                event.target.submit()
-            }
-        });
-
-
-        /* THIS IS FOR DoB MASKING */
-        const dateOfBirthID = ["input-patients-DoB", "input-patients-DoB-field"];
-
-        // Loop through each ID and apply the mask
-        dateOfBirthID.forEach(id => {
+        date.forEach(id => {
             const inputElement = document.getElementById(id);
             if (inputElement) { // Check if the element exists
                 IMask(inputElement, {
@@ -309,6 +269,33 @@
                 });
             }
         });
+
+        document.getElementById("viewTemplate").addEventListener('submit', function (event) {
+
+            // Prevent the form from submitting initially
+            event.preventDefault()
+
+            const patient = document.getElementById('select-assessments-patients-field').value
+            const doctor = document.getElementById('select-assessments-doctors-field').value
+            const date = document.getElementById('input-assessments-date-field').value
+
+            if (!patient) {
+                alert('Patient required');
+            }
+            else if (!doctor) {
+                alert('Doctor required');
+            }
+            else if (!date) {
+                alert('Please fill in a date');
+            }
+            else if (date.length !== 10) {
+                alert('Please provide a valid date in the correct format (YYYY/MM/DD)');
+            }
+            else {
+                event.target.submit()
+            }
+        })
+
     });
 </script>
 

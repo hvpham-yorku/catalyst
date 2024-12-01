@@ -1,6 +1,7 @@
 package ca.yorku.eecs.singletons.catalyst.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -25,6 +26,7 @@ public class VisualAssessment {
     @JoinColumn(name = "doctor_id", nullable = false)
     private Optometrist doctor;
 
+    @NotNull(message = "Assessment date is required and cannot be empty.")
     @Column(name = "assessment_date")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate assessmentDate;
