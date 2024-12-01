@@ -53,7 +53,9 @@
 
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h2 class="mb-4" style="margin: 0;">Visual Assessments</h2>
-        <button class="btn btn-success create-btn">Create</button>
+        <!-- Create button -->
+        <button class="btn btn-success create-btn" data-bs-toggle="modal" data-bs-target="#createTemplate">Create
+        </button>
     </div>
 
 
@@ -67,16 +69,210 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Jason Tran</td>
-            <td>Kevin Nguyen</td>
-            <td>2024-12-20</td>
-            <td><button class="btn btn-primary btn-sm">Expand</button></td>
+        <tr th:each="assessment : ${assessments}">
+            <td th:text="${assessment.patient.firstName + ' ' + assessment.patient.lastName}"></td>
+            <td th:text="${assessment.doctor.firstName + ' ' + assessment.doctor.lastName}"></td>
+            <td th:text="${assessment.assessmentDate}"></td>
+            <td>
+                <!-- Link to dedicated details page -->
+                <a th:href="@{/assessments/{id}(id=${assessment.id})}" class="btn btn-primary btn-sm">Expand</a>
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!-- Modal for Create Visual Assessments -->
+<div class="modal fade" id="createTemplate" tabindex="-1" aria-labelledby="createTemplate" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form action="/assessments" method="post" th:object="${assessment}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Doctor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div><!------ Select for Patient ----->
+                        <label for="select-assessments-patients" class="form-label">Patient</label>
+                        <select class="form-select" id="select-assessments-patients" th:field="*{patient}">
+                            <option value="" disabled selected>Please select a patient</option>
+                            <option th:each="patient : ${patients}"
+                                    th:value="${patient.id}"
+                                    th:text="${patient.firstName + ' ' + patient.lastName + ', ID: ' + patient.id}"></option>
+                        </select>
+                    </div>
+                    <div><!------ Select for Doctor ----->
+                        <label for="select-assessments-doctors" class="form-label mt-4">Doctor</label>
+                        <select class="form-select" id="select-assessments-doctors" th:field="*{doctor}">
+                            <option value="" selected disabled>Please select a patient</option>
+                            <option th:each="optometrist : ${optometrists}"
+                                    th:value="${optometrist.id}"
+                                    th:text="${optometrist.firstName + ' ' + optometrist.lastName + ', ID: ' + optometrist.id}"></option>
+                        </select>
+                    </div>
+                    <div><!------ Visual Acuity ----->
+                        <label for="div-assessments-visualAcuity" class="form-label mt-4">Visual Acuity</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="div-assessments-visualAcuity">Left and Right</span>
+                            </div>
+                            <input type="number" class="form-control" id="input-assessments-leftVA"
+                                   placeholder="Left Visual Acuity" th:field="*{visualAcuityLeft}">
+                            <input type="number" class="form-control" id="input-assessments-rightVA"
+                                   placeholder="Right Visual Acuity" th:field="*{visualAcuityRight}">
+                        </div>
+                    </div>
+                    <div><!------ Refraction ----->
+                        <label for="div-assessments-refraction" class="form-label mt-4">Refraction</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="div-assessments-refraction">Left and Right</span>
+                            </div>
+                            <input type="number" class="form-control" id="input-assessments-leftRefraction"
+                                   placeholder="Left Refraction" th:field="*{refractionLeft}">
+                            <input type="number" class="form-control" id="input-assessments-rightRefraction"
+                                   placeholder="Right Refraction" th:field="*{refractionRight}">
+                        </div>
+                    </div>
+                    <div><!------ Intraocular Pressure (mmHg) ----->
+                        <label for="div-assessments-intraocularPressure" class="form-label mt-4">Intraocular Pressure
+                            (mmHg)</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"
+                                      id="div-assessments-intraocularPressure">Left and Right</span>
+                            </div>
+                            <input type="number" class="form-control" id="input-assessments-leftIP"
+                                   placeholder="Left Intraocular Pressure" th:field="*{intraocularPressureLeft}">
+                            <input type="number" class="form-control" id="input-assessments-rightIP"
+                                   placeholder="Right Intraocular Pressure" th:field="*{intraocularPressureRight}">
+                        </div>
+                    </div>
+                    <div><!------ Colour Vision ----->
+                        <label for="select-colourVision" class="form-label mt-4">Colour Vision</label>
+                        <select class="form-select" id="select-colourVision" th:field="*{colorVision}">
+                            <option value="" selected disabled>Please select</option>
+                            <option value="normal">Normal</option>
+                            <option value="protanopia">Protanopia (Red Deficiency)</option>
+                            <option value="deuteranopia">Deuteranopia (Green Deficiency)</option>
+                            <option value="tritanopia">Tritanopia (Blue-Yellow Deficiency)</option>
+                        </select>
+                    </div>
+                    <div><!------ Pupillary Response----->
+                        <label for="select-pupillaryResponse" class="form-label mt-4">Pupillary Response</label>
+                        <select class="form-select" id="select-pupillaryResponse" th:field="*{pupillaryResponse}">
+                            <option value="" selected disabled>Please select</option>
+                            <option value="normal">Normal</option>
+                            <option value="sluggish">Sluggish</option>
+                            <option value="non-reactive">Non-reactive</option>
+                            <option value="delayed">Delayed</option>
+                        </select>
+                    </div>
+                    <div><!------ Visual Field----->
+                        <label for="select-visualField" class="form-label mt-4">Visual Field</label>
+                        <select class="form-select" id="select-visualField" th:field="*{visualField}">
+                            <option value="" selected disabled>Please select</option>
+                            <option value="normal">Normal</option>
+                            <option value="central-loss">Central Loss</option>
+                            <option value="peripheral-loss">Peripheral Loss</option>
+                            <option value="quadrantanopia">Quadrantanopia</option>
+                            <option value="hemianopia">Hemianopia</option>
+                        </select>
+                    </div>
+                    <div> <!------ Assessment Date ----->
+                        <label for="input-assessments-date" class="form-label mt-4">Assessment Date</label>
+                        <input type="text" class="form-control" id="input-assessments-date" placeholder="YYYY/MM/DD"
+                               th:field="*{assessmentDate}">
+                    </div>
+                    <div><!------ Additional Notes ----->
+                        <label for="text-area" class="form-label mt-4">Additional Notes</label>
+                        <textarea class="form-control" id="text-area" rows="2"
+                                  th:field="*{notes}"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!------ Create Button for VA popup ----->
+                    <button type="submit" id="button-assessments-create" class="btn btn-success">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="https://unpkg.com/imask"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        /* THIS IS FOR ASSESSMENT DATE MASKING */
+        const date = ["input-assessments-date", "input-assessments-date-field"];
+
+        // Loop through each ID and apply the mask
+        date.forEach(id => {
+            const inputElement = document.getElementById(id);
+            if (inputElement) { // Check if the element exists
+                IMask(inputElement, {
+                    mask: Date,
+                    pattern: 'YYYY/MM/DD',
+                    lazy: true,
+                    min: new Date(1970, 0, 1),
+                    max: new Date(2030, 0, 1),
+
+                    format: date => moment(date).format(momentFormat),
+                    blocks: {
+                        YYYY: {
+                            mask: IMask.MaskedRange,
+                            from: 1970,
+                            to: 2030
+                        },
+                        MM: {
+                            mask: IMask.MaskedRange,
+                            from: 1,
+                            to: 12
+                        },
+                        DD: {
+                            mask: IMask.MaskedRange,
+                            from: 1,
+                            to: 31
+                        },
+                    }
+                });
+            }
+        });
+
+
+        document.getElementById("createTemplate").addEventListener('submit', function (event) {
+
+            // Prevent the form from submitting initially
+            event.preventDefault()
+
+            const patient = document.getElementById('select-assessments-patients').value
+            const doctor = document.getElementById('select-assessments-doctors').value
+            const date = document.getElementById('input-assessments-date').value
+
+
+            if (!patient) {
+                alert('Patient required');
+            }
+            else if (!doctor) {
+                alert('Doctor required');
+            }
+            else if (!date) {
+                alert('Please fill in a date');
+            }
+            else if (date.length !== 10) {
+                alert('Please provide a valid date in the correct format (YYYY/MM/DD)');
+            }
+            else {
+                event.target.submit()
+            }
+        })
+
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 </html>
