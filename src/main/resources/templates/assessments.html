@@ -185,8 +185,8 @@
                                th:field="*{assessmentDate}">
                     </div>
                     <div><!------ Additional Notes ----->
-                        <label for="textarea-assessments-date" class="form-label mt-4">Additional Notes</label>
-                        <textarea class="form-control" id="textarea-assessments-date" rows="2"
+                        <label for="text-area" class="form-label mt-4">Additional Notes</label>
+                        <textarea class="form-control" id="text-area" rows="2"
                                   th:field="*{notes}"></textarea>
                     </div>
                 </div>
@@ -205,10 +205,10 @@
     document.addEventListener("DOMContentLoaded", function () {
 
         /* THIS IS FOR ASSESSMENT DATE MASKING */
-        const dateOfBirthID = ["input-assessments-date", "input-assessments-date-field"];
+        const date = ["input-assessments-date", "input-assessments-date-field"];
 
         // Loop through each ID and apply the mask
-        dateOfBirthID.forEach(id => {
+        date.forEach(id => {
             const inputElement = document.getElementById(id);
             if (inputElement) { // Check if the element exists
                 IMask(inputElement, {
@@ -239,6 +239,35 @@
                 });
             }
         });
+
+
+        document.getElementById("createTemplate").addEventListener('submit', function (event) {
+
+            // Prevent the form from submitting initially
+            event.preventDefault()
+
+            const patient = document.getElementById('select-assessments-patients').value
+            const doctor = document.getElementById('select-assessments-doctors').value
+            const date = document.getElementById('input-assessments-date').value
+
+
+            if (!patient) {
+                alert('Patient required');
+            }
+            else if (!doctor) {
+                alert('Doctor required');
+            }
+            else if (!date) {
+                alert('Please fill in a date');
+            }
+            else if (date.length !== 10) {
+                alert('Please provide a valid date in the correct format (YYYY/MM/DD)');
+            }
+            else {
+                event.target.submit()
+            }
+        })
+
     });
 </script>
 

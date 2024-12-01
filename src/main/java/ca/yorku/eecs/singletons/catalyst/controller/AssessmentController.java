@@ -60,10 +60,21 @@ public class AssessmentController {
     }
 
     @PostMapping("/{id}")
-    public String updateAssessment(@PathVariable Integer id, @ModelAttribute VisualAssessment assessment) {
+    public String updateAssessment(@PathVariable Integer id,
+                                   @Valid @ModelAttribute("assessment") VisualAssessment assessment,
+                                   BindingResult result,
+                                   Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("optometrists", optometristService.findAll());
+            model.addAttribute("patients", patientService.findAll());
+            model.addAttribute("validationErrors", result.getAllErrors());
+            return "assessment-details";
+        }
+
         assessmentService.save(assessment);
         return "redirect:/assessments";
     }
+
 
     @GetMapping("/{id}/delete")
     public String deleteAssessment(@PathVariable Integer id) {
