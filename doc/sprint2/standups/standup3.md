@@ -13,7 +13,10 @@
 
 ## Amir Ali Mohaghegh
 
-
+1. I worked on making improvements to the login page in accordance to PR comments from groupmates
+2. Helping out with documentation and finishing up any future PR requests
+3. End of day
+4. No blockers
 
 ## Barbod Habibi
 
