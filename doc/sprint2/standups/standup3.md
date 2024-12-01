@@ -17,4 +17,7 @@
 
 ## Barbod Habibi
 
-
+1. I worked on the server-side endpoints for authentication and a utility method for hashing passwords.
+2. I am going to continue with the authentication endpoints and develop some unit tests as well.
+3. I plan to wrap up these functionalities by the end of tomorrow (2024-12-01)
+4. No blockers
