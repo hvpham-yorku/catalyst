@@ -3,10 +3,10 @@ CREATE TABLE patients
     id           BIGINT AUTO_INCREMENT PRIMARY KEY,
     first_name   VARCHAR(255) NOT NULL,
     last_name    VARCHAR(255) NOT NULL,
-    dob          VARCHAR(255),
+    birth_date   VARCHAR(255),
     gender       VARCHAR(255),
-    contact_info VARCHAR(255),
-    address      VARCHAR(255),
+    email        VARCHAR(255),
+    phone_number VARCHAR(12),
     created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -43,4 +43,26 @@ CREATE TABLE visual_assessments
     updated_at                 TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (patient_id) REFERENCES patients (id),
     FOREIGN KEY (doctor_id) REFERENCES optometrists (id)
+);
+
+CREATE TABLE users
+(
+    id       BIGINT AUTO_INCREMENT PRIMARY KEY,
+    email    VARCHAR(255),
+    password VARCHAR(255)
+);
+
+CREATE TABLE roles
+(
+    id   BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255)
+);
+
+CREATE TABLE users_roles
+(
+    user_id BIGINT,
+    role_id BIGINT,
+    PRIMARY KEY (user_id, role_id),
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES roles (id) ON DELETE CASCADE
 );
