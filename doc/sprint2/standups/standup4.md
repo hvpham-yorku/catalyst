@@ -1,4 +1,4 @@
-[2024-11-30] - Sprint #2 Standup #4
+[2024-12-02] - Sprint #2 Standup #4
 1. What did you work on since the last standup?
 2. What do you commit to next?
 3. When do you think you'll be done?
@@ -13,7 +13,10 @@
 
 ## Amir Ali Mohaghegh
 
-
+1. Began work on system design document in coordination with Barbod and provide peer review for PR requests
+2. Finishing up System design document and any final documentation 
+3. Mid-day tomorrow
+4. No blockers
 
 ## Barbod Habibi
 
