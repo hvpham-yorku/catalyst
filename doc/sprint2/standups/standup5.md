@@ -19,3 +19,8 @@
 4. No blockers
 
 ## Barbod Habibi
+
+1. I worked on the user services and integrating them with the front-end, as well as some client-side bugs preventing the login form from being properly submitted
+2. I am going to continue working on the client-side integration and do testing to ensure proper functionality
+3. I expect to finish this work by the end of today
+4. Major blocker was the client-side issue preventing appropriate login form submission, which I discussed with Kevin

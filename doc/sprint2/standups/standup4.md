@@ -20,4 +20,9 @@
 
 ## Barbod Habibi
 
+1. I finished the server-side endpoints for authentication and set up password hashing using BCrypt
+2. I am going to work on adding the user-related services and integrate into client-side
+3. I expect to finish this work by the end of tomorrow
+4. No blockers
+
 
