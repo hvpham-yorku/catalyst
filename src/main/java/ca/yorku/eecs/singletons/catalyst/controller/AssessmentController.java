@@ -3,12 +3,12 @@ package ca.yorku.eecs.singletons.catalyst.controller;
 import ca.yorku.eecs.singletons.catalyst.model.Optometrist;
 import ca.yorku.eecs.singletons.catalyst.model.Patient;
 import ca.yorku.eecs.singletons.catalyst.model.VisualAssessment;
+import ca.yorku.eecs.singletons.catalyst.security.SecurityUtil;
 import ca.yorku.eecs.singletons.catalyst.service.AssessmentService;
 import ca.yorku.eecs.singletons.catalyst.service.OptometristService;
 import ca.yorku.eecs.singletons.catalyst.service.PatientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/assessments")
 @RequiredArgsConstructor
-@Slf4j
 public class AssessmentController {
     private final AssessmentService assessmentService;
     private final PatientService patientService;
@@ -31,6 +30,11 @@ public class AssessmentController {
         model.addAttribute("optometrist", new Optometrist());
         model.addAttribute("patients", patientService.findAll());
         model.addAttribute("patient", new Patient());
+
+        var email = SecurityUtil.getSessionUser();
+        model.addAttribute("isAuthenticated", email != null);
+        if (email != null) model.addAttribute("email", email);
+
         return "assessments";
     }
 
@@ -56,6 +60,11 @@ public class AssessmentController {
         model.addAttribute("assessment", assessment);
         model.addAttribute("optometrists", optometristService.findAll());
         model.addAttribute("patients", patientService.findAll());
+
+        var email = SecurityUtil.getSessionUser();
+        model.addAttribute("isAuthenticated", email != null);
+        if (email != null) model.addAttribute("email", email);
+
         return "assessment-details";
     }
 

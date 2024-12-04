@@ -1,6 +1,7 @@
 package ca.yorku.eecs.singletons.catalyst.controller;
 
 import ca.yorku.eecs.singletons.catalyst.model.Optometrist;
+import ca.yorku.eecs.singletons.catalyst.security.SecurityUtil;
 import ca.yorku.eecs.singletons.catalyst.service.OptometristService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,11 @@ public class OptometristController {
     public String optometrists(Model model) {
         model.addAttribute("optometrists", optometristService.findAll());
         model.addAttribute("optometrist", new Optometrist());
+
+        var email = SecurityUtil.getSessionUser();
+        model.addAttribute("isAuthenticated", email != null);
+        if (email != null) model.addAttribute("email", email);
+
         return "optometrists";
     }
 
@@ -42,7 +48,12 @@ public class OptometristController {
         Optometrist optometrist = optometristService.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid optometrist ID: " + id));
         model.addAttribute("optometrist", optometrist);
-        return "optometrist-details"; // Thymeleaf template name
+
+        var email = SecurityUtil.getSessionUser();
+        model.addAttribute("isAuthenticated", email != null);
+        if (email != null) model.addAttribute("email", email);
+
+        return "optometrist-details";
     }
 
     @PostMapping("/{id}")

@@ -1,6 +1,7 @@
 package ca.yorku.eecs.singletons.catalyst.controller;
 
 import ca.yorku.eecs.singletons.catalyst.model.Patient;
+import ca.yorku.eecs.singletons.catalyst.security.SecurityUtil;
 import ca.yorku.eecs.singletons.catalyst.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,11 @@ public class PatientController {
     public String patients(Model model) {
         model.addAttribute("patients", patientService.findAll());
         model.addAttribute("patient", new Patient());
+
+        var email = SecurityUtil.getSessionUser();
+        model.addAttribute("isAuthenticated", email != null);
+        if (email != null) model.addAttribute("email", email);
+
         return "patients";
     }
 
@@ -41,6 +47,11 @@ public class PatientController {
         Patient patient = patientService.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid patient ID: " + id));
         model.addAttribute("patient", patient);
+
+        var email = SecurityUtil.getSessionUser();
+        model.addAttribute("isAuthenticated", email != null);
+        if (email != null) model.addAttribute("email", email);
+
         return "patient-details";
     }
 

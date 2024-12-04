@@ -50,9 +50,12 @@
                     <a class="nav-link" href="/assessments">Assessments</a>
                 </li>
             </ul>
-            <a href="/login" class="link-light display-6 ms-auto pe-4">
+            <a th:if="${!isAuthenticated}" href="/auth/login" class="link-light display-6 ms-auto pe-4">
                 <i class="bi bi-person-circle "></i>
             </a>
+            <div th:if="${isAuthenticated}" class="link-light display-6 ms-auto pe-4" style="font-size: 18px;">
+                <p th:text="${email}"></p>
+            </div>
         </div>
     </div>
 </nav>
