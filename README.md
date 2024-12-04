@@ -46,11 +46,15 @@ If running this command doesn't work, try finding the `CatalystApplication.java`
 
 - The application will run on the default port `http://localhost:8080`.
   - Simply open your browser and past the port into your search bar.
+- To access the H2 console, update the `SecurityConfig.java` to disable CSRF protection for the H2 console and allow it to render properly.
+The required commands are already included in the configuration. Simply uncomment them and adjust their order within the CSRF builder as needed.
 - To access the H2 console, navigate to `http://localhost:8080/h2-console`.
 - Use the following default credentials configured in `application.properties`:
-  - URL: `jdbc:h2:file:./data/testdb`
+  - URL: `jdbc:h2:mem:testdb`
   - Username: `sa`
   - Password: (leave blank, unless specified in `application.properties`)
+- The application uses an in-memory database that persists only for the duration of the server's runtime.
+Upon server startup, `schema.sql` initializes the database schema, and `data.sql` populates it with default data.
 
 ## Contribution
 
