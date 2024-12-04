@@ -1,4 +1,4 @@
-[2024-12-03] - Sprint #2 Standup #4
+[2024-12-03] - Sprint #2 Standup #5
 1. What did you work on since the last standup?
 2. What do you commit to next?
 3. When do you think you'll be done?
@@ -6,7 +6,10 @@
 
 ## Kevin Nguyen
 
-1. 
+1. I was finishing up the trello and begin creating the burndown chart
+2. The burndown chart
+3. End of the day
+4. No blockers
 
 ## Amir Ali Mohaghegh
 
